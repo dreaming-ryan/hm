@@ -427,6 +427,36 @@ body {
   color: #999;
 }
 
+/* 문의하기 버튼 (카카오톡 채널 연결) */
+.btn-inquiry {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 20px;
+  background: #FEE500;
+  color: #191919;
+  border: 1.5px solid #FEE500;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: all .18s;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-inquiry:hover {
+  background: #FFD700;
+  border-color: #FFD700;
+  box-shadow: 0 3px 10px rgba(254,229,0,.35);
+  transform: translateY(-1px);
+}
+.btn-inquiry-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
 /* ───────── 정답 영역 ───────── */
 .answer-wrap {
   display: none;
@@ -9538,6 +9568,10 @@ function renderQuestion(q) {
       <button class="btn-check" data-action="reveal" ${ua.selected === null && !ua.revealed ? "disabled" : ""}>
         ${ua.revealed ? "다시 풀기" : "정답 확인"}
       </button>
+      <a class="btn-inquiry" href="http://pf.kakao.com/_xeYdxlX" target="_blank" rel="noopener noreferrer">
+        <span class="btn-inquiry-icon">💬</span>
+        문의하기
+      </a>
     </div>
 
     <div class="answer-wrap ${ua.revealed ? 'open' : ''}">
