@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>과목별 기출문제 — 위험물산업기사 필기</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@500;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4F7F2;--surface:#FFFFFF;--border:#E1E5DE;
+  --text-main:#1F2421;--text-sub:#5F6B63;--text-muted:#9BA69F;
+  --point:#0F766E;--point-l:#E0F5F2;
+  --sub3:#8B2635;--sub3-l:#F5E8EA;
+  --r-lg:18px;--r-md:12px;
+  --sh-sm:0 1px 4px rgba(0,0,0,.06);--sh-md:0 4px 20px rgba(0,0,0,.09);--sh-lg:0 12px 40px rgba(0,0,0,.12)
+}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text-main);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.site-header{width:100%;padding:1.1rem 1.5rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10}
+.back-btn{display:flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:500;color:var(--text-sub);padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);transition:all .15s;flex-shrink:0}
+.back-btn:hover{color:var(--text-main);border-color:#ccc}
+.header-title{font-size:15px;font-weight:600;color:var(--text-main)}
+.header-badge{margin-left:auto;font-size:12px;font-weight:500;color:var(--sub3);background:var(--sub3-l);padding:4px 12px;border-radius:20px}
+.main{width:100%;max-width:680px;padding:2.5rem 1.5rem 6rem}
+.page-hero{margin-bottom:2rem;animation:fadeUp .5s ease both}
+.page-hero h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;letter-spacing:-.03em;margin-bottom:5px}
+.page-hero p{font-size:13px;color:var(--text-sub)}
+.skel{display:inline-block;background:linear-gradient(90deg,#e0e5dc 25%,#f4f7f2 50%,#e0e5dc 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:4px;vertical-align:middle}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.footer{text-align:center;font-size:12px;color:var(--text-muted);padding:1.5rem;border-top:1px solid var(--border);width:100%}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.total-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:1rem 1.4rem;margin-bottom:1.6rem;font-size:13px;color:var(--text-sub);line-height:1.65}
+.total-bar strong{color:var(--sub3);font-weight:700}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:2rem}
+.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.6rem 1.4rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:all .2s ease;position:relative;overflow:hidden;box-shadow:var(--sh-sm);cursor:pointer;animation:fadeUp .5s ease both;min-height:180px}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);opacity:0;transition:opacity .2s}
+.cat-card:hover{box-shadow:var(--sh-lg);transform:translateY(-3px);border-color:transparent}
+.cat-card:hover::before{opacity:1}
+.cat-card.wide{grid-column:span 2}
+.cat-emoji{font-size:28px;line-height:1}
+.cat-name{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--text-main);letter-spacing:-.02em;line-height:1.4}
+.cat-stats{margin-top:auto}
+.cat-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-sub);margin-bottom:8px}
+.cat-stat-val{color:var(--c);font-weight:700}
+.progress-wrap{background:#F0F2EE;border-radius:10px;height:6px;overflow:hidden}
+.progress-bar{height:100%;background:var(--c);border-radius:10px;transition:width .5s ease}
+.cat-arrow{position:absolute;top:1.3rem;right:1.4rem;font-size:15px;color:var(--text-muted);transition:transform .18s,color .18s}
+.cat-card:hover .cat-arrow{transform:translate(2px,-2px);color:var(--c)}
+.placeholder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.placeholder-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.6rem 1.4rem 1.3rem;min-height:180px}
+.pdf-btn-wrap{display:flex;justify-content:center;margin-bottom:2rem;animation:fadeUp .5s .08s ease both}
+.pdf-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:50px;background:linear-gradient(135deg,#0F766E 0%,#0B5C55 100%);color:#fff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.02em;box-shadow:0 4px 18px rgba(15,118,110,.38);transition:all .22s ease;white-space:nowrap;text-align:left}
+.pdf-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(15,118,110,.50);filter:brightness(1.07)}
+.pdf-btn:active{transform:translateY(0);box-shadow:0 3px 10px rgba(15,118,110,.30)}
+.pdf-btn-icon{font-size:18px;line-height:1;flex-shrink:0}
+@media(max-width:480px){
+  .cat-grid,.placeholder-grid{grid-template-columns:1fr}
+  .cat-card.wide{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="back-btn" href="index.html">← 홈</a>
+  <span class="header-title">📚 과목별 기출문제</span>
+  <span class="header-badge" id="header-badge">로딩 중…</span>
+</header>
+<main class="main">
+  <div class="page-hero">
+    <h1>과목별 기출문제 풀기</h1>
+    <p>원하는 과목을 선택하면 해당 과목의 전 회차 문제만 모아서 풀 수 있어요.</p>
+  </div>
+
+  <!-- PDF 요약노트 다운로드 버튼 -->
+  <div class="pdf-btn-wrap">
+    <a class="pdf-btn"
+       href="https://dreaming-ryan.com/home?product=%EC%9C%84%ED%97%98%EB%AC%BC%EC%82%B0%EC%97%85%EA%B8%B0%EC%82%AC%20%EC%9A%94%EC%95%BD%EB%85%B8%ED%8A%B8%20PDF%20(%ED%95%84%EA%B8%B0)"
+       target="_blank"
+       rel="noopener noreferrer">
+      <span class="pdf-btn-icon">📙</span>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:2px">
+        <span>위산기 필기 요약노트 PDF</span>
+        <span style="font-size:13px;font-weight:500;opacity:.9">무료 다운받기</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="total-bar" id="total-bar">
+    <span class="skel" style="width:50%;height:14px;display:block"></span>
+  </div>
+
+  <div id="cat-container">
+    <div class="placeholder-grid">
+      <div class="placeholder-card"><span class="skel" style="width:40px;height:40px;display:block;margin-bottom:12px;border-radius:8px"></span><span class="skel" style="width:70%;height:18px;display:block;margin-bottom:14px"></span><span class="skel" style="width:50%;height:12px;display:block;margin-bottom:10px"></span><span class="skel" style="width:100%;height:6px;display:block;border-radius:10px"></span></div>
+      <div class="placeholder-card"><span class="skel" style="width:40px;height:40px;display:block;margin-bottom:12px;border-radius:8px"></span><span class="skel" style="width:70%;height:18px;display:block;margin-bottom:14px"></span><span class="skel" style="width:50%;height:12px;display:block;margin-bottom:10px"></span><span class="skel" style="width:100%;height:6px;display:block;border-radius:10px"></span></div>
+      <div class="placeholder-card"><span class="skel" style="width:40px;height:40px;display:block;margin-bottom:12px;border-radius:8px"></span><span class="skel" style="width:70%;height:18px;display:block;margin-bottom:14px"></span><span class="skel" style="width:50%;height:12px;display:block;margin-bottom:10px"></span><span class="skel" style="width:100%;height:6px;display:block;border-radius:10px"></span></div>
+    </div>
+  </div>
+</main>
+<footer class="footer" id="footer-text">위험물산업기사 필기 기출문제 복원풀이 자료</footer>
+
+<script src="hm_stats.js"></script>
+<script>
+/* 과목별 색상/이모지/한줄 설명 */
+var subjectConfig = {
+  1: { color: '#6B3FA0', emoji: '🧪', desc: '원자·분자, 화학반응, 기체·용액의 기본 개념' },
+  2: { color: '#C2410C', emoji: '🔥', desc: '연소·소화 이론, 소화약제·소화설비 기준' },
+  3: { color: '#8B2635', emoji: '⚠️', desc: '제1~6류 위험물의 성질·저장·운반·취급 기준' }
+};
+
+HmStats.load(function(s) {
+  var total = s.totalQ;
+  document.getElementById('header-badge').textContent = s.subjects.length + '개 과목';
+  document.getElementById('total-bar').innerHTML =
+    '전체 <strong>' + total + '문항</strong>이 ' + s.subjects.length + '개 과목에 걸쳐 출제돼요. 과목별 비중을 확인해보세요.';
+
+  var container = document.getElementById('cat-container');
+  container.innerHTML = '';
+  var grid = document.createElement('div');
+  grid.className = 'cat-grid';
+
+  var subjects = s.subjects.slice();
+
+  subjects.forEach(function(subjNum, i) {
+    var cfg = subjectConfig[subjNum] || { color: '#888', emoji: '📂', desc: '' };
+    var cnt = s.subjectMap[subjNum];
+    var pct = Math.round(cnt / total * 100);
+    var subjectName = s.subjectNames[subjNum];
+    var wide = (i === subjects.length - 1 && subjects.length % 2 !== 0 && subjects.length > 1) ? ' wide' : '';
+    var href = 'hm_quiz.html?subject=' + encodeURIComponent(subjNum);
+
+    var card = document.createElement('a');
+    card.className = 'cat-card' + wide;
+    card.href = href;
+    card.style.setProperty('--c', cfg.color);
+    card.style.animationDelay = (i * 0.06) + 's';
+    card.innerHTML =
+      '<div class="cat-emoji">' + cfg.emoji + '</div>' +
+      '<div class="cat-name">' + subjNum + '과목<br>' + subjectName + '</div>' +
+      '<div style="font-size:11.5px;color:var(--text-sub);line-height:1.55">' + cfg.desc + '</div>' +
+      '<div class="cat-stats">' +
+        '<div class="cat-stat-row">' +
+          '<span>문항 수</span>' +
+          '<span class="cat-stat-val">' + cnt + '문항 · ' + pct + '%</span>' +
+        '</div>' +
+        '<div class="progress-wrap"><div class="progress-bar" style="width:' + pct + '%"></div></div>' +
+      '</div>' +
+      '<span class="cat-arrow">↗</span>';
+    grid.appendChild(card);
+  });
+
+  container.appendChild(grid);
+
+  document.getElementById('footer-text').textContent =
+    '위험물산업기사 필기 기출문제 복원풀이 · ' + s.minYear + '~' + s.maxYear + '년 · ' + s.totalRounds + '개 회차';
+});
+</script>
+</body>
+</html>
